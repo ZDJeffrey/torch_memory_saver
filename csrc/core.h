@@ -2,6 +2,7 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <unordered_map>
+#include <unordered_set>
 #include <atomic>
 #include <mutex>
 #include <string>
@@ -61,5 +62,6 @@ private:
 
     std::mutex allocator_metadata_mutex_;
     std::unordered_map<void*, AllocationMetadata> allocation_metadata_;
+    std::unordered_map<std::string, std::unordered_set<void*>> tag_index_;
     std::atomic<uint64_t> memory_margin_bytes_ = 0;
 };
